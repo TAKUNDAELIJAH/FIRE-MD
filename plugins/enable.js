@@ -31,14 +31,31 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.jarvis = isEnable
       break
+    case 'antilink2':
+        if (m.isGroup) {
+                if (!(isAdmin || isOwner)) {
+                            global.dfail('admin', m, conn);
+                                     throw false;
+                                             }
+                                                   }
+                                                         chat.antiLink2 = isEnable;
+                                                                 break;
     case 'pmblocker':
       isAll = true
       if (!isROwner) {
-        global.dfail('rowner', m, conn)
+       global.dfail('rowner', m, conn)
         throw false
       }
       bot.pmblocker = isEnable
       break
+    case 'public':
+      isAll = true;
+      if (!isROwner) {
+        global.dfail('rowner', m, conn);
+        throw false;
+      }
+      global.opts['self'] = !isEnable;
+      break;
     case 'autobio':
       isAll = true
       if (!isROwner) {
@@ -47,6 +64,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       bot.autoBio = isEnable
       break
+    case 'antiviewonce':
+          if (m.isGroup) {
+                  if (!(isAdmin || isOwner)) {
+                            global.dfail('admin', m, conn);
+                                      throw false;
+                                              }
+                                                    }
+                                                          chat.antiviewonce = isEnable;
+                                                                break;  
     case 'detect':
     case 'detector':
       if (!m.isGroup) {
@@ -69,6 +95,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.autosticker = isEnable
       break
+    case 'autoread':
+        isAll = true;
+        if (!isROwner) {
+          global.dfail('rowner', m, conn);
+          throw false;
+        }
+        bot.autoread2 = isEnable;
+        global.opts['autoread'] = isEnable;
+        break;
     case 'antispam':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -220,10 +255,12 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 ⛊ jarvis
 ⛊ antispam
 ⛊ antitoxic
+🔥 antilink2
 ╰──────────⳹ 
 ◈──『 *USERS*』───⳹
 ⛊ autolevelup
 ⛊ chatbot 
+🌚 public
 ╰──────────⳹
 ◈──『 *OWNER*』───⳹
 ⛊ onlydm
