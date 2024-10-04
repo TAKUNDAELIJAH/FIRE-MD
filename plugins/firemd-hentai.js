@@ -2,10 +2,8 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command, args }) => {
   if (!global.db.data.chats[m.chat].nsfw)
-    throw `🚫 Group doesn't support NSFW. Enable it by using *${usedPrefix}enable* nsfw.`;
-
-  let userAge = global.db.data.users[m.sender].age;
-  if (userAge < 17) throw `❎ You need to be at least 18 years old.`;
+    throw `🚫 Group doesn't support NSFW. Enable it by using *${usedPrefix}enable* nsfw.`; 
+  
 
   try {
     m.reply(global.wait);
